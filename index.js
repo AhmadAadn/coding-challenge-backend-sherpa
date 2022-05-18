@@ -52,7 +52,7 @@ app.get('/events/:id', async (req, res, next) => {
 app.put('/events/:id', async (req, res) => {
   const id = req.params.id;
   const event = await Events.findOne({where: {id: id}});
-  event.name = req.body.name;
+  await event.update(req.body);
   await event.save();
   res.send('updated');
 })
